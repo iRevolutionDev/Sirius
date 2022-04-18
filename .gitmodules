@@ -1,0 +1,8 @@
+[submodule "Sirius/vendor/imgui/src"]
+	path = Sirius/vendor/imgui/src
+	url = https://github.com/ocornut/imgui
+	branch = docking
+[submodule "vendor/imgui"]
+	path = vendor/imgui
+	url = https://github.com/iRevolutionDev/imgui
+	branch = docking
