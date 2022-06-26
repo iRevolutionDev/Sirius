@@ -21,7 +21,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
     return Sirius::Main(__argc, __argv);
 }
-#elif
+#else
 int main(int argc, char** argv)
 {
     return Sirius::Main(argc, argv);
