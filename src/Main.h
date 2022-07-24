@@ -1,3 +1,4 @@
+#include <Application.h>
 
 extern Sirius::Application* CreateApplication(int argc, char** argv);
 bool g_isRunning = true;
@@ -5,7 +6,7 @@ bool g_isRunning = true;
 namespace Sirius {
     int Main(int argc, char** argv)
     {
-        while g_isRunning)
+        while (g_isRunning)
         {
             auto app = CreateApplication(argc, argv);
             app->Run();
