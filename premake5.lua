@@ -30,6 +30,10 @@ project "Sirius"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    postbuildcommands {
+        "{COPY} %{cfg.buildtarget.relpath} bin/libs",
+    }
+
     filter "system:windows"
 	    systemversion "latest"
 		defines { "_PLATFORM_WINDOWS" }

@@ -15,9 +15,16 @@ project "basic-app"
         "%{IncludeDir.VulkanSDK}"
     }
 
+    libdirs
+    {
+        "../../bin/libs"
+    }
+
     links
     {
-        "../../bin/" .. outputdir .. "/Sirius/Sirius.lib"
+        "ImGui",
+        "GLFW",
+        "Sirius"
     }
 
     targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
@@ -44,3 +51,5 @@ project "basic-app"
         runtime "Release"
         optimize "On"
         symbols "Off"
+
+include "../../vendors/imgui"
