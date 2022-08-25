@@ -2,7 +2,7 @@
 
 #ifdef _PLATFORM_WINDOWS
 
-extern Sirius::Application* Sirius::CreateApplication(int argc, char** argv);
+extern Sirius::Window* Sirius::CreateWindowApp(int argc, char** argv);
 bool g_isRunning = true;
 
 namespace Sirius {
@@ -10,7 +10,7 @@ namespace Sirius {
     {
         while (g_isRunning)
         {
-            auto app = Sirius::CreateApplication(argc, argv);
+            auto app = Sirius::CreateWindowApp(argc, argv);
             app->Run();
             delete app;
         }
