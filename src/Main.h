@@ -1,6 +1,8 @@
-#include <Application.h>
+#pragma once
 
-extern Sirius::Application* CreateApplication(int argc, char** argv);
+#ifdef _PLATFORM_WINDOWS
+
+extern Sirius::Application* Sirius::CreateApplication(int argc, char** argv);
 bool g_isRunning = true;
 
 namespace Sirius {
@@ -8,7 +10,7 @@ namespace Sirius {
     {
         while (g_isRunning)
         {
-            auto app = CreateApplication(argc, argv);
+            auto app = Sirius::CreateApplication(argc, argv);
             app->Run();
             delete app;
         }
@@ -16,7 +18,7 @@ namespace Sirius {
     }
 }
 
-#ifdef _WIN32
+#ifdef _DIST
 #include <Windows.h>
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -27,4 +29,6 @@ int main(int argc, char** argv)
 {
     return Sirius::Main(argc, argv);
 }
+#endif
+
 #endif

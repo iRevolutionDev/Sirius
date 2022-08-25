@@ -2,7 +2,7 @@
 workspace "Sirius"
     architecture "x64"
     startproject "Sirius"
-    configurations { "Debug", "Release" }
+    configurations { "Debug", "Release", "Dist" }
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -29,6 +29,27 @@ project "Sirius"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    filter "system:windows"
+	    systemversion "latest"
+		defines { "_PLATFORM_WINDOWS" }
+
+	filter "configurations:Debug"
+	    defines { "_DEBUG" }
+		runtime "Debug"
+		symbols "On"
+		
+	filter "configurations:Release"
+	    defines { "_RELEASE" }
+		runtime "Release"
+		optimize "On"
+		symbols "On"
+		
+	filter "configurations:Dist"
+	    defines { "_DIST" }
+		runtime "Release"
+		optimize "On"
+		symbols "Off"
 
     location "src/"
 
@@ -57,7 +78,7 @@ project "Sirius"
 workspace "Sirius-Examples"
     architecture "x64"
     startproject "Sirius-Examples"
-    configurations { "Debug", "Release" }
+    configurations { "Debug", "Release", "Dist" }
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
