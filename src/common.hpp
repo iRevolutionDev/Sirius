@@ -4,4 +4,4 @@
 #include <string>
 #include <vector>
 
-inline auto g_running = false;
+inline auto g_running = true;
