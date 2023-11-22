@@ -1,0 +1,11 @@
+message(STATUS "Configuring examples")
+
+file(GLOB EXAMPLES_DIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
+foreach(EXAMPLE_DIR ${EXAMPLES_DIRS})
+    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${EXAMPLE_DIR}/main.cpp)
+        add_executable(${EXAMPLE_DIR} ${EXAMPLE_DIR}/main.cpp)
+        target_link_libraries(${EXAMPLE_DIR} ${PROJECT_NAME})
+    else ()
+        message(STATUS "Skipping ${EXAMPLE_DIR}")
+    endif()
+endforeach()

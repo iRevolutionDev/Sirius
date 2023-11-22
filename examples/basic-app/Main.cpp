@@ -1,14 +1,6 @@
-#include "Window.h"
-#include "Main.h"
-#include "App.hpp"
+#include <Sirius/main.hpp>
 
-Sirius::Window* Sirius::CreateWindowApp(int argc, char** argv)
+Sirius::window* Sirius::create_window(int, char**)
 {
-    Sirius::WindowInfo windowInfo;
-    windowInfo.Title = "Basic App";
-    
-    auto window = new Sirius::Window(windowInfo);
-    window->RunApp(new BasicApp);
-    
-    return window;
+    return new window(window_info{});
 }
