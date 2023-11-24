@@ -44,6 +44,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${PUBLIC_HEADER_DIR}/Sirius/
 target_precompile_headers(${PROJECT_NAME} PRIVATE "${SRC_DIR}/common.hpp")
 target_include_directories(${PROJECT_NAME} PUBLIC "${SRC_DIR}")
 
+target_include_directories(${PROJECT_NAME} PRIVATE
+        "${imgui_SOURCE_DIR}"
+)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADER_FILES}")
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(${PROJECT_NAME} PUBLIC "${PUBLIC_HEADER_DIR}")
