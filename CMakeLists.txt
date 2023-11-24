@@ -35,6 +35,7 @@ target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan)
 message(STATUS "Fetching packages...")
 include(scripts/glfw.cmake)
 include(scripts/glad.cmake)
+include(scripts/imgui.cmake)
 
 # Compiler Options
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 23)
