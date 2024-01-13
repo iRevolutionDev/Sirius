@@ -80,8 +80,8 @@ void Sirius::vulkan_api::create_instance()
     application_info.apiVersion = VK_API_VERSION_1_2;
     application_info.pApplicationName = "Sirius";
     application_info.pEngineName = "Sirius";
-    application_info.applicationVersion = VK_MAKE_VERSION(0, 0, 1);
-    application_info.engineVersion = VK_MAKE_VERSION(0, 0, 1);
+    application_info.applicationVersion = VK_MAKE_API_VERSION(0, 0, 1, 0);
+    application_info.engineVersion = VK_MAKE_API_VERSION(0, 0, 1, 0);
 
     VkInstanceCreateInfo instance_create_info{};
     instance_create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
