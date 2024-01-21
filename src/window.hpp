@@ -25,6 +25,7 @@ namespace Sirius
         [[nodiscard]] SDL_Window* get_window() const noexcept { return m_window; }
 
     private:
+        float get_scale() const;
         void init();
 
         window_info m_info;

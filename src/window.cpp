@@ -25,6 +25,22 @@ void Sirius::window::run() const
     m_app->run(this);
 }
 
+float Sirius::window::get_scale() const
+{
+    int w, h;
+    SDL_GetWindowSize(m_window, &w, &h);
+
+    int rw, rh;
+    SDL_GetRendererOutputSize(m_renderer, &rw, &rh);
+
+    const auto scale = std::min(
+        static_cast<float>(rw) / static_cast<float>(w),
+        static_cast<float>(rh) / static_cast<float>(h)
+    );
+
+    return scale;
+}
+
 void Sirius::window::init()
 {
     constexpr auto window_flags = static_cast<SDL_WindowFlags>(
@@ -50,6 +66,9 @@ void Sirius::window::init()
 
     if (m_renderer == nullptr)
         throw std::runtime_error(std::format("SDL_CreateRenderer failed: {}", SDL_GetError()));
+
+    const auto scale = get_scale();
+    SDL_RenderSetScale(m_renderer, scale, scale);
 }
 
 void Sirius::window::close() const
