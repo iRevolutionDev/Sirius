@@ -54,6 +54,17 @@ void Sirius::application::run(const window* window)
             case SDL_QUIT:
                 m_running = false;
                 break;
+            case event.window.windowID == SDL_GetWindowID(window->get_window())
+                     ? SDL_WINDOWEVENT
+                     : 0:
+
+                on_event(event.window);
+                for (const auto& layer : m_layers)
+                {
+                    layer->on_event(event);
+                }
+
+                break;
             default: break;
             }
         }
@@ -84,6 +95,30 @@ void Sirius::application::run(const window* window)
 void Sirius::application::quit()
 {
     m_running = false;
+}
+
+void Sirius::application::on_event(const SDL_WindowEvent& event)
+{
+    switch (event.event)
+    {
+    case SDL_WINDOWEVENT_MINIMIZED:
+        on_minimize();
+        break;
+    case SDL_WINDOWEVENT_SHOWN | SDL_WINDOWEVENT_MAXIMIZED:
+        on_maximize();
+        break;
+    default: break;
+    }
+}
+
+void Sirius::application::on_minimize()
+{
+    m_minimized = !m_minimized;
+}
+
+void Sirius::application::on_maximize()
+{
+    m_minimized = !m_minimized;
 }
 
 void Sirius::application::push_layer(std::unique_ptr<layer> layer)

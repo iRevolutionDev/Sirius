@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL_events.h>
+
 #include "layer.hpp"
 
 namespace Sirius
@@ -15,6 +17,11 @@ namespace Sirius
         void run(const window* window);
         void quit();
 
+        void on_event(const SDL_WindowEvent& event);
+
+        void on_minimize();
+        void on_maximize();
+
         template <typename T>
         void push_layer()
         {
@@ -29,6 +36,8 @@ namespace Sirius
     private:
         int m_exit_code{};
         bool m_running{true};
+
+        bool m_minimized{false};
 
         std::vector<std::unique_ptr<layer>> m_layers{};
     };
