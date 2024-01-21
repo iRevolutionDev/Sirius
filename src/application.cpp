@@ -54,14 +54,14 @@ void Sirius::application::run(const window* window)
             case SDL_QUIT:
                 m_running = false;
                 break;
-            case event.window.windowID == SDL_GetWindowID(window->get_window())
-                     ? SDL_WINDOWEVENT
-                     : 0:
+            case SDL_WINDOWEVENT:
 
                 on_event(event.window);
                 for (const auto& layer : m_layers)
                 {
+                    m_layers_mutex.lock();
                     layer->on_event(event);
+                    m_layers_mutex.unlock();
                 }
 
                 break;
@@ -123,11 +123,26 @@ void Sirius::application::on_maximize()
 
 void Sirius::application::push_layer(std::unique_ptr<layer> layer)
 {
+    m_layers_mutex.lock();
     m_layers.emplace_back(std::move(layer));
     m_layers.back()->on_attach();
+    m_layers_mutex.unlock();
 }
 
 void Sirius::application::pop_layer()
 {
+    m_layers_mutex.lock();
     m_layers.pop_back();
+    m_layers_mutex.unlock();
+}
+
+void Sirius::application::pop_layer(const layer* layer)
+{
+    m_layers_mutex.lock();
+    std::erase_if(
+        m_layers,
+        [layer](const auto& l) { return l.get() == layer; }
+    );
+    m_layers_mutex.unlock();
+    m_layers.back()->on_detach();
 }

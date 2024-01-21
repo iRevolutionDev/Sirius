@@ -32,6 +32,10 @@ namespace Sirius
 
         void push_layer(std::unique_ptr<layer> layer);
         void pop_layer();
+        void pop_layer(const layer* layer);
+
+        [[nodiscard]] bool is_running() const { return m_running; }
+        [[nodiscard]] bool is_minimized() const { return m_minimized; }
 
     private:
         int m_exit_code{};
@@ -40,5 +44,6 @@ namespace Sirius
         bool m_minimized{false};
 
         std::vector<std::unique_ptr<layer>> m_layers{};
+        std::mutex m_layers_mutex{};
     };
 }
