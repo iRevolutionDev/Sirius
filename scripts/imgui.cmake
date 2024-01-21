@@ -15,17 +15,17 @@ if (NOT imgui_POPULATED)
     file(GLOB SRC_IMGUI
             "${imgui_SOURCE_DIR}/*.cpp"
             "${imgui_SOURCE_DIR}/misc/cpp/imgui_stdlib.cpp"
-            "${imgui_SOURCE_DIR}/backends/imgui_impl_glfw.cpp"
-            "${imgui_SOURCE_DIR}/backends/imgui_impl_opengl3.cpp"
-            "${imgui_SOURCE_DIR}/backends/imgui_impl_vulkan.cpp"
+            "${imgui_SOURCE_DIR}/backends/imgui_impl_sdl2.cpp"
+            "${imgui_SOURCE_DIR}/backends/imgui_impl_sdlrenderer2.cpp"
     )
 
     add_library(imgui STATIC ${SRC_IMGUI})
     source_group(TREE ${imgui_SOURCE_DIR} PREFIX "imgui" FILES ${SRC_IMGUI})
-    target_include_directories(imgui PRIVATE
+    target_include_directories(imgui PUBLIC
             "${imgui_SOURCE_DIR}"
             "${imgui_SOURCE_DIR}/backends"
             "${imgui_SOURCE_DIR}/misc/cpp"
+            "${SDL2_SOURCE_DIR}/include"
     )
 endif ()
 set_property(TARGET imgui PROPERTY CXX_STANDARD 23)
