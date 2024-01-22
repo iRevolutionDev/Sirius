@@ -57,6 +57,9 @@ target_include_directories(${PROJECT_NAME} PUBLIC "${PUBLIC_HEADER_DIR}")
 
 add_subdirectory(examples)
 
+set(SIRIUS_INCLUDE_DIRS ${PUBLIC_HEADER_DIR} CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)
+set(SIRIUS_LIBRARIES ${PROJECT_NAME} CACHE INTERNAL "${PROJECT_NAME}: Libraries" FORCE)
+
 # Platform Macros
 if (WIN32)
     target_compile_definitions(${PROJECT_NAME} PUBLIC SIRIUS_PLATFORM_WINDOWS)
