@@ -35,6 +35,8 @@ void Sirius::application::run(const window* window)
     ImGuiIO& io{ImGui::GetIO()};
 
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
     ImGui_ImplSDL2_InitForSDLRenderer(
         window->get_window(),

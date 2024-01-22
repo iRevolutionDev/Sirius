@@ -3,7 +3,7 @@ include(FetchContent)
 FetchContent_Declare(
         imgui
         GIT_REPOSITORY https://github.com/ocornut/imgui.git
-        GIT_TAG v1.90
+        GIT_TAG 01b99a974dee45181a8fecc70dfb5360852fdff7 # Docking branch
         GIT_PROGRESS TRUE
 )
 
