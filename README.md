@@ -5,6 +5,8 @@
 A rendering framework for imgui that is lightweight and works on multiple platforms. It is written in C++ and uses SDL2
 for window creation and SDL Renderer for rendering.
 
+Modern **C++23** is used for the project.
+
 ## Features
 
 - [x] Lightweight
