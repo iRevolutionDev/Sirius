@@ -40,6 +40,7 @@ namespace Sirius
     private:
         int m_exit_code{};
         bool m_running{true};
+        const window* m_window{};
 
         bool m_minimized{false};
 

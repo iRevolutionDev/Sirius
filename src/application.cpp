@@ -30,6 +30,8 @@ void Sirius::application::run(const window* window)
 {
     if (m_exit_code != 0) return;
 
+    m_window = window;
+
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io{ImGui::GetIO()};
@@ -127,6 +129,7 @@ void Sirius::application::push_layer(std::unique_ptr<layer> layer)
 {
     m_layers_mutex.lock();
     m_layers.emplace_back(std::move(layer));
+    m_layers.back()->set_window(m_window);
     m_layers.back()->on_attach();
     m_layers_mutex.unlock();
 }

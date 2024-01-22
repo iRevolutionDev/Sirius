@@ -23,9 +23,10 @@ namespace Sirius
 
         [[nodiscard]] SDL_Renderer* get_renderer() const noexcept { return m_renderer; }
         [[nodiscard]] SDL_Window* get_window() const noexcept { return m_window; }
+        [[nodiscard]] application* get_app() const noexcept { return m_app; }
 
     private:
-        float get_scale() const;
+        [[nodiscard]] float get_scale() const;
         void init();
 
         window_info m_info;
