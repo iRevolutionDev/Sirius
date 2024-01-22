@@ -23,7 +23,7 @@ namespace Sirius
         {
         }
 
-        virtual void on_event(const SDL_Event& event)
+        virtual void on_event([[maybe_unused]] const SDL_Event& event)
         {
         }
     };

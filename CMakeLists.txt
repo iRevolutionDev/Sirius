@@ -44,10 +44,11 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         "${SDL2_SOURCE_DIR}/include"
 )
 
+# Linker Options
 target_link_libraries(${PROJECT_NAME} PUBLIC
         imgui
-        ${CMAKE_THREAD_LIBS_INIT}
         SDL2::SDL2
+        ${CMAKE_THREAD_LIBS_INIT}
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADER_FILES}")
@@ -62,3 +63,8 @@ if (WIN32)
 elseif (UNIX)
     target_compile_definitions(${PROJECT_NAME} PUBLIC SIRIUS_PLATFORM_LINUX)
 endif ()
+
+## Tests
+#enable_testing()
+#
+#add_subdirectory(test)
