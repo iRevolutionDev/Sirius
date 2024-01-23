@@ -33,7 +33,7 @@ float Sirius::window::get_scale() const
     int rw, rh;
     SDL_GetRendererOutputSize(m_renderer, &rw, &rh);
 
-    const auto scale = std::min(
+    const auto scale = (std::min)(
         static_cast<float>(rw) / static_cast<float>(w),
         static_cast<float>(rh) / static_cast<float>(h)
     );
