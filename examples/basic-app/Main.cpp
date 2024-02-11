@@ -1,6 +1,6 @@
 #include <Sirius/main.hpp>
 
-#include "application.hpp"
+#include "Sirius/application.hpp"
 #include "demo.hpp"
 
 Sirius::window* Sirius::create_window(int, char**)

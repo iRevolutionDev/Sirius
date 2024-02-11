@@ -47,6 +47,14 @@ void Sirius::application::run(const window* window)
 
     ImGui_ImplSDLRenderer2_Init(window->get_renderer());
 
+    for (const auto& layer : m_layers)
+    {
+        m_layers_mutex.lock();
+        layer->set_window(window);
+        layer->on_init();
+        m_layers_mutex.unlock();
+    }
+
     while (m_running)
     {
         SDL_Event event;
@@ -129,7 +137,6 @@ void Sirius::application::push_layer(std::unique_ptr<layer> layer)
 {
     m_layers_mutex.lock();
     m_layers.emplace_back(std::move(layer));
-    m_layers.back()->set_window(m_window);
     m_layers.back()->on_attach();
     m_layers_mutex.unlock();
 }
@@ -144,10 +151,10 @@ void Sirius::application::pop_layer()
 void Sirius::application::pop_layer(const layer* layer)
 {
     m_layers_mutex.lock();
+    m_layers.back()->on_detach();
     std::erase_if(
         m_layers,
         [layer](const auto& l) { return l.get() == layer; }
     );
     m_layers_mutex.unlock();
-    m_layers.back()->on_detach();
 }
