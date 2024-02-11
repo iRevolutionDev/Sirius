@@ -31,8 +31,8 @@ Modern **C++23** is used for the project.
 
 ```cpp
 #include <Sirius/main.hpp>
-#include "application.hpp"
-#include "layer.hpp"
+#include "Sirius/application.hpp"
+#include "Sirius/layer.hpp"
 #include "imgui.h"
 
 class demo final : public Sirius::layer
